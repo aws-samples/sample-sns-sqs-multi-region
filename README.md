@@ -18,14 +18,14 @@ Message flow in normal operation:
 1. The producer publishes messages to the SNS topic in the primary Region
 2. The primary SNS topic fans out messages to:
     - The active SQS queue in the primary Region
-    - The DR SQS queue in the primary Region
+    - The DR SQS queue in the secondary Region
 3. AWS Lambda functions process messages from both queues
 
 During failover:
 1. The producer switches to publishing messages to the SNS topic in the secondary Region
 2. The secondary SNS topic fans out messages to:
     - The active SQS queue in the secondary Region
-    - The DR SQS queue in the secondary Region
+    - The DR SQS queue in the primary Region
 3. AWS Lambda functions in the secondary Region take over message processing
 
 ## Prerequisites
